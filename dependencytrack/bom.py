@@ -8,8 +8,8 @@ class Bom:
 
     def upload_bom(
         self,
-        file_name,
-        project_id=None,
+        bom_data,
+        project_uuid=None,
         project_name=None,
         project_version=None,
         auto_create=False,
@@ -23,10 +23,10 @@ class Bom:
         :raises DependencyTrackApiError: if the REST call failed
         """
         multipart_form_data = {}
-        multipart_form_data["bom"] = ("bom", open(file_name, "r"))
+        multipart_form_data["bom"] = bom_data
 
-        if project_id:
-            multipart_form_data["project"] = project_id
+        if project_uuid:
+            multipart_form_data["project"] = project_uuid
         if project_name:
             multipart_form_data["projectName"] = project_name
         if project_version:
